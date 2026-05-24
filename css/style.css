@@ -1,37 +1,37 @@
 body {
     margin: 0;
+    padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Poppins', sans-serif;
-    transition: 0.5s;
+    /* Background gradasi hitam ke abu-abu gelap */
+    background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .glass-card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 3rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Efek transparan/glassmorphism */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Border tipis untuk kesan mewah */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    
+    padding: 50px 80px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    /* Memastikan tulisan di tengah */
     text-align: center;
-    color: white;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    max-width: 80%;
 }
 
-button {
-    background: white;
-    color: #764ba2;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.05);
-    background: #e0e0e0;
+h1 {
+    color: #ffffff;
+    font-size: 3rem; /* Ukuran tulisan besar */
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin: 0;
 }
