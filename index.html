@@ -3,81 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Portfolio</title>
+    <title>My Professional Project</title>
     <style>
-        /* Reset & Base Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             background-color: #050505;
-            color: #ffffff;
-            font-family: 'Inter', -apple-system, sans-serif;
-            display: grid;
-            place-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            font-family: sans-serif;
         }
 
-        /* Glassmorphism Card */
-        .content {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            padding: 4rem;
-            text-align: center;
-            transition: transform 0.4s ease;
+        /* Ini adalah wadah teksnya */
+        .container {
             position: relative;
-            z-index: 10;
+            z-index: 100; /* Pastikan dia paling depan */
+            text-align: center;
         }
 
-        /* Modern Gradient Typography */
-        .headline {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            letter-spacing: -0.04em;
+        /* Judul yang elegan */
+        h1 {
+            font-size: 4rem;
             text-transform: uppercase;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
             
-            /* Teknik Clip agar gradien masuk ke dalam teks */
-            background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+            /* Background gradien untuk teks */
+            background: linear-gradient(to bottom, #ffffff, #666666);
+            
+            /* KUNCI: Supaya teks kelihatan dan tidak tertutup */
             -webkit-background-clip: text;
             background-clip: text;
-            -webkit-text-fill-color: transparent; /* PENTING: ini agar teks tidak tertutup */
-        }
-
-        .subline {
-            font-size: 0.9rem;
-            color: #888888;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            border-top: 1px solid #444;
-            padding-top: 1rem;
-            display: inline-block;
+            -webkit-text-fill-color: transparent;
+            color: transparent; 
         }
     </style>
 </head>
 <body>
 
-    <div class="content">
-        <h1 class="headline">WELCOME!<br>IT'S MY FIRST<br>CODING PROJECT</h1>
-        <p class="subline">crafted with precision and elegance</p>
+    <div class="container">
+        <h1>WELCOME! IT'S MY FIRST CODING PROJECT</h1>
     </div>
 
-    <script>
-        // Interaksi Parallax Halus
-        const card = document.querySelector('.content');
-
-        document.addEventListener('mousemove', (e) => {
-            const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
-            const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
-            card.style.transform = `perspective(1000px) rotateY(${xPos}deg) rotateX(${-yPos}deg)`;
-        });
-
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
-        });
-    </script>
 </body>
 </html>
