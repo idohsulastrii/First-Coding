@@ -3,14 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Project</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Professional Showcase</title>
+    <style>
+        /* Modern reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Subtle grain overlay for texture */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        /* Large, elegant typography */
+        .headline {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-composite: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .subline {
+            font-size: 1.2rem;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            animation: fadeIn 1s 0.5s forwards;
+        }
+
+        /* Subtle glowing element */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="glass-card">
-        <h1>Welcome! It's my first coding project</h1>
+    <div class="glow"></div>
+    <div class="content">
+        <h1 class="headline">WELCOME!<br>IT'S MY FIRST<br>CODING PROJECT</h1>
+        <p class="subline">crafted with precision and elegance</p>
     </div>
 
+    <script>
+        // Simple interaction to add a professional touch
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.glow');
+            glow.style.left = (e.clientX - 200) + 'px';
+            glow.style.top = (e.clientY - 200) + 'px';
+        });
+    </script>
 </body>
 </html>

@@ -1,37 +1,68 @@
+/* Lanjutan/Penyempurnaan CSS Profesional */
+
+:root {
+    --bg-dark: #050505;
+    --text-primary: #ffffff;
+    --text-muted: #888888;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* Memperbaiki responsivitas agar terlihat bagus di HP maupun Desktop */
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Background gradasi hitam ke abu-abu gelap */
-    background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.5;
 }
 
-.glass-card {
-    /* Efek transparan/glassmorphism */
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    
-    /* Border tipis untuk kesan mewah */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    
-    padding: 50px 80px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    
-    /* Memastikan tulisan di tengah */
-    text-align: center;
-    max-width: 80%;
+/* Membuat card menjadi lebih "High-End" dengan backdrop blur yang tepat */
+.content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 4rem;
+    max-width: 800px;
+    transition: transform 0.4s ease;
 }
 
-h1 {
-    color: #ffffff;
-    font-size: 3rem; /* Ukuran tulisan besar */
-    font-weight: 700;
-    letter-spacing: -1px;
-    margin: 0;
+/* Efek hover pada card untuk kesan interaktif */
+.content:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Tipografi modern dengan efek clipping */
+.headline {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-composite: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+/* Mempercantik sub-headline */
+.subline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 0.3em;
+    border-top: 1px solid var(--text-muted);
+    padding-top: 1rem;
+    display: inline-block;
+}
+
+/* Menambahkan elemen dekoratif (Frame tipis di sekitar konten) */
+.content::after {
+    content: "";
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 35px;
+    pointer-events: none;
 }
