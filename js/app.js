@@ -1,35 +1,18 @@
-/* ==================================================
-   SMOOTH INTERACTIVE JS - PROFESSIONAL PERFORMANCE
-   ================================================== */
+// Tambahkan script ini tepat sebelum penutup </body>
 
-document.addEventListener('DOMContentLoaded', () => {
-    const card = document.querySelector('.content');
+<script>
+    const h1 = document.querySelector('h1');
 
-    // Menggunakan requestAnimationFrame agar animasi sangat halus
-    let xTarget = 0, yTarget = 0;
-    let xCurrent = 0, yCurrent = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        // Menghitung posisi kursor relatif terhadap tengah layar
-        xTarget = (e.clientX / window.innerWidth - 0.5) * 20;
-        yTarget = (e.clientY / window.innerHeight - 0.5) * 20;
+    // Efek: Teks sedikit membesar saat diarahkan kursor (Hover)
+    h1.addEventListener('mouseover', () => {
+        h1.style.transition = 'all 0.5s ease';
+        h1.style.transform = 'scale(1.05)';
+        h1.style.color = '#aaaaaa'; // Berubah warna menjadi abu-abu elegan saat dihover
     });
 
-    function animate() {
-        // Efek "easing" agar gerakan tidak kaku
-        xCurrent += (xTarget - xCurrent) * 0.1;
-        yCurrent += (yTarget - yCurrent) * 0.1;
-
-        card.style.transform = `perspective(1000px) rotateY(${xCurrent}deg) rotateX(${-yCurrent}deg)`;
-        
-        requestAnimationFrame(animate);
-    }
-
-    // Reset posisi saat mouse keluar
-    document.addEventListener('mouseleave', () => {
-        xTarget = 0;
-        yTarget = 0;
+    // Efek: Kembali normal saat kursor menjauh
+    h1.addEventListener('mouseout', () => {
+        h1.style.transform = 'scale(1)';
+        h1.style.color = '#ffffff';
     });
-
-    animate();
-});
+</script>
