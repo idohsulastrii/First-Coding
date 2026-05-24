@@ -1,29 +1,33 @@
-body {
-            margin: 0;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Inter', -apple-system, sans-serif; /* Font standar modern */
+/* --- TAMBAHAN CSS BARU: Efek Bingkai Kanvas --- */
+        .container {
+            position: relative;
+            padding: 4rem 3rem;
+            
+            /* Bingkai transparan super tipis */
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            
+            /* Cahaya berpendar (glow) sangat halus di belakang */
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.02);
+            
+            /* Transisi saat tema berubah atau di-hover */
+            transition: all 0.8s ease;
         }
 
-        .text-container {
-            text-align: center;
-            padding: 0 20px;
-            animation: fadeIn 1.5s ease-out;
+        /* Saat mouse mendekati area kontainer (bukan cuma teksnya) */
+        .container:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 80px rgba(255, 255, 255, 0.04);
+            transform: translateY(-2px);
         }
 
-        h1 {
-            font-size: clamp(2rem, 5vw, 4rem); /* Responsif otomatis */
-            font-weight: 300;
-            letter-spacing: -0.02em; /* Kerenggangan huruf yang pas */
-            line-height: 1.2;
-            color: rgba(255, 255, 255, 0.9); /* Sedikit lebih lembut dari putih murni */
+        /* Penyesuaian saat berubah ke Tema Terang (Light Mode) */
+        body.light-mode .container {
+            border-color: rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        body.light-mode .container:hover {
+            border-color: rgba(0, 0, 0, 0.1);
         }
+        /* ---------------------------------------------- */

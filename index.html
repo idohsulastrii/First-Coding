@@ -3,44 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project</title>
+    <title>My Professional Project</title>
     <style>
+        /* 1. Reset Dasar */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        /* 2. Pengaturan Background (Mode Gelap sebagai Default) */
         body {
-            margin: 0;
-            background-color: #000; /* Hitam pekat modern */
-            color: #fff;
+            background-color: #050505; 
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, sans-serif;
+            user-select: none; /* Mencegah teks terblok tidak sengaja */
+            transition: background-color 0.8s ease; /* Transisi halus saat ganti tema */
         }
 
-        .text-container {
-            text-align: center;
-            /* Animasi muncul pelan-pelan */
-            animation: fadeIn 2s ease-in;
+        /* 3. Kelas Tema Terang (Light Mode) */
+        body.light-mode {
+            background-color: #ffffff;
         }
 
+        /* 4. Pengaturan Judul Utama */
         h1 {
-            font-size: 3rem;
-            font-weight: 300; /* Tipis modern */
-            letter-spacing: -1px;
-            margin: 0;
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 200; 
+            color: #ffffff;
+            letter-spacing: -0.05em; 
+            line-height: 1.1;
+            cursor: pointer;
+            text-align: center;
+            padding: 0 20px;
+            
+            /* Animasi muncul dari bawah */
+            animation: fadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Definisi animasi */
+        /* 5. Penyesuaian Warna Judul di Tema Terang */
+        body.light-mode h1 {
+            color: #000000;
+        }
+
+        /* 6. Efek Hover yang Halus (Saat kursor menyentuh teks) */
+        h1:hover {
+            letter-spacing: -0.02em; 
+            color: #888888; 
+            transform: translateY(-5px); 
+        }
+
+        /* 7. Detail Animasi Fade-in */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="text-container">
+    <!-- Wadah Teks -->
+    <div class="container">
         <h1>WELCOME! IT'S MY FIRST CODING PROJECT</h1>
     </div>
 
+    <!-- JavaScript Fungsional & Aman -->
+    <script>
+        // Fitur: Klik teks untuk mengganti tema (Dark/Light)
+        const h1 = document.querySelector('h1');
+        
+        h1.addEventListener('click', () => {
+            // Ini akan menyalakan/mematikan class 'light-mode' di background
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
 </body>
 </html>
