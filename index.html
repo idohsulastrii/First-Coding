@@ -3,95 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Showcase</title>
+    <title>Modern Portfolio</title>
     <style>
-        /* Modern reset */
+        /* Reset & Base Setup */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #0a0a0a;
+            background-color: #050505;
             color: #ffffff;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Inter', -apple-system, sans-serif;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
             overflow: hidden;
         }
 
-        /* Subtle grain overlay for texture */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.1;
-            pointer-events: none;
-        }
-
+        /* Glassmorphism Card */
         .content {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 4rem;
             text-align: center;
-            z-index: 1;
-            padding: 2rem;
+            transition: transform 0.4s ease;
+            position: relative;
+            z-index: 10;
         }
 
-        /* Large, elegant typography */
+        /* Modern Gradient Typography */
         .headline {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.05em;
-            margin-bottom: 2rem;
-            background: linear-gradient(to right, #ffffff, #888888);
-            -webkit-background-composite: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            
+            /* Teknik Clip agar gradien masuk ke dalam teks */
+            background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent; /* PENTING: ini agar teks tidak tertutup */
         }
 
         .subline {
-            font-size: 1.2rem;
-            color: #666666;
+            font-size: 0.9rem;
+            color: #888888;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            opacity: 0;
-            animation: fadeIn 1s 0.5s forwards;
-        }
-
-        /* Subtle glowing element */
-        .glow {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+            display: inline-block;
         }
     </style>
 </head>
 <body>
 
-    <div class="glow"></div>
     <div class="content">
         <h1 class="headline">WELCOME!<br>IT'S MY FIRST<br>CODING PROJECT</h1>
         <p class="subline">crafted with precision and elegance</p>
     </div>
 
     <script>
-        // Simple interaction to add a professional touch
+        // Interaksi Parallax Halus
+        const card = document.querySelector('.content');
+
         document.addEventListener('mousemove', (e) => {
-            const glow = document.querySelector('.glow');
-            glow.style.left = (e.clientX - 200) + 'px';
-            glow.style.top = (e.clientY - 200) + 'px';
+            const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+            const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+            card.style.transform = `perspective(1000px) rotateY(${xPos}deg) rotateX(${-yPos}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
         });
     </script>
 </body>

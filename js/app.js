@@ -1,27 +1,35 @@
+/* ==================================================
+   SMOOTH INTERACTIVE JS - PROFESSIONAL PERFORMANCE
+   ================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
     const card = document.querySelector('.content');
-    const headline = document.querySelector('.headline');
 
-    // 1. Efek Parallax Halus saat Mouse Bergerak
+    // Menggunakan requestAnimationFrame agar animasi sangat halus
+    let xTarget = 0, yTarget = 0;
+    let xCurrent = 0, yCurrent = 0;
+
     document.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const xPos = (clientX / window.innerWidth - 0.5) * 20;
-        const yPos = (clientY / window.innerHeight - 0.5) * 20;
+        // Menghitung posisi kursor relatif terhadap tengah layar
+        xTarget = (e.clientX / window.innerWidth - 0.5) * 20;
+        yTarget = (e.clientY / window.innerHeight - 0.5) * 20;
+    });
+
+    function animate() {
+        // Efek "easing" agar gerakan tidak kaku
+        xCurrent += (xTarget - xCurrent) * 0.1;
+        yCurrent += (yTarget - yCurrent) * 0.1;
+
+        card.style.transform = `perspective(1000px) rotateY(${xCurrent}deg) rotateX(${-yCurrent}deg)`;
         
-        card.style.transform = `perspective(1000px) rotateY(${xPos}deg) rotateX(${-yPos}deg)`;
-    });
+        requestAnimationFrame(animate);
+    }
 
-    // 2. Efek Reset saat Mouse Keluar dari Window
+    // Reset posisi saat mouse keluar
     document.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+        xTarget = 0;
+        yTarget = 0;
     });
 
-    // 3. Menambahkan Interaksi Klik (Efek Ripple Sederhana)
-    card.addEventListener('click', () => {
-        headline.style.transition = 'all 0.3s ease';
-        headline.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-            headline.style.transform = 'scale(1)';
-        }, 300);
-    });
+    animate();
 });
